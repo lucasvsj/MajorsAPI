@@ -33,3 +33,4 @@ build/
 requirements_*
 majors/
 *test*
+*_Flask*

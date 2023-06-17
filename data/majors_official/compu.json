@@ -1,0 +1,62 @@
+{
+    "nombre": "Computación y Sistemas de Información",
+    "requisitos": {
+        "relacion": "AND",
+        "subrequisitos": [
+            {
+                "nombre": "Exploratorio",
+                "relacion": "AND",
+                "subrequisitos": [
+                    "AQH0000",
+                    "IIC2304",
+                    "ICE2006",
+                    "ICE2623",
+                    {
+                        "relacion": "AND",
+                        "subrequisitos": [
+                            "IIC1005",
+                            "IIC1006"
+                        ]
+                    }
+                ]
+            },
+            {
+                "nombre": "Minimos de Major",
+                "relacion": "AND",
+                "subrequisitos": [
+                    "IIC1253",
+                    "IIC2233",
+                    "IIC2133",
+                    "IIC2143",
+                    "IIC2413",
+                    "IIC2513",
+                    "IIC2154"
+                ]
+            },
+            {
+                "nombre": "Track",
+                "relacion": "OR",
+                "subrequisitos": [
+                    {
+                        "nombre": "Computación",
+                        "relacion": "AND",
+                        "subrequisitos": [
+                            "IIC2343",
+                            "IIC2333",
+                            "IIC2613"
+                        ]
+                    },
+                    {
+                        "nombre": "Sistemas de Información",
+                        "relacion": "AND",
+                        "subrequisitos": [
+                            "IIC2713",
+                            "IIC2733",
+                            "IIC2764"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,70 @@
+{
+  "nombre": "Ingeniería de Software",
+  "requisitos": {
+    "relacion": "AND",
+    "subrequisitos": [
+      {
+        "nombre": "Exploratorio",
+        "relacion": "OR",
+        "subrequisitos": [
+          "AQH0000",
+          "ICC2304",
+          "ICE2006",
+          {
+            "relacion": "OR",
+            "subrequisitos": [
+              "ICE2623",
+              "IMM2003"
+            ]
+          },
+          "ICH1005",
+          "IBM1005",
+          "ICH1104",
+          "ICH2304",
+          "ICM1001",
+          {
+            "relacion": "OR",
+            "subrequisitos": [
+              "ICS1113",
+              "ICS113H"
+            ]
+          },
+          "ICT2904",
+          "IEE1100",
+          "IIC1005",
+          "IIQ1001",
+          "IIQ2663",
+          "IMM1003",
+          "IMT1001",
+          "IDI1015",
+          "ING1024",
+          {
+            "relacion": "OR",
+            "subrequisitos": [
+              "IRB1001",
+              "IRB2001"
+            ]
+          },
+          "IFI1001",
+          "ICC1001"
+        ]
+      },
+      {
+        "nombre": "Minimos de Major",
+        "relacion": "AND",
+        "subrequisitos": [
+          "IIC1253",
+          "IIC2113",
+          "IIC2133",
+          "IIC2143",
+          "IIC2173",
+          "IIC2233",
+          "IIC2413",
+          "IIC2513",
+          "IIC2713",
+          "IIC2154"
+        ]
+      }
+    ]
+  }
+}

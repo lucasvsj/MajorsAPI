@@ -2,8 +2,34 @@ try:
     import os
     import json
     from typing import Union
+    from fastapi import Depends, HTTPException
+    from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 except Exception as e:
     print(f'Error! Some Modules are Missing  : {e}')
+
+# Authentication
+
+def authenticate(credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())):
+    path = f'{os.getcwd()}/ids.json'
+    auth_id = credentials.credentials
+    with open(path, encoding='utf-8', mode='r') as ids_file:
+        valid_ids = json.load(ids_file)
+        if auth_id not in valid_ids.keys():
+            raise HTTPException(status_code=401, detail="Invalid auth token")
+        if valid_ids[auth_id] != 0:
+            message = f'You have already spent your token. Consider buying more tokens. Contact lfvansintjan@uc.cl for more tokens'
+            raise HTTPException(status_code=401, detail=message)
+    valid_ids[auth_id] += 1
+    update_ids(valid_ids)
+    return True
+
+def update_ids(new_data: dict):
+    path = f'{os.getcwd()}/ids.json'
+    with open(path, encoding='utf-8', mode='w') as ids_file:
+        json.dump(new_data, ids_file, indent=4)
+
+
+# Helpers
 
 def remove_course_from_major(major_name: str, course_name: str):
     major_data = get_major_data(major_name)

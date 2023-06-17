@@ -32,3 +32,4 @@ build/
 
 requirements_*
 majors/
+*test*

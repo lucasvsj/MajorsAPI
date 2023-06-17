@@ -102,7 +102,7 @@ def checker_dfs(data, depth=0):
         return False
 
 def get_all_majors():
-    for _, _, files in os.walk(f'{os.getcwd()}/majors'):
+    for _, _, files in os.walk(f'{os.getcwd()}/data/majors'):
         majors = list(filter(lambda char: '.json' in char, files))
         majors = list(map(lambda char: char.split('.')[0], majors))
         return majors

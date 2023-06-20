@@ -6,6 +6,7 @@ except Exception as e:
 
 from ..dependencies import *
 
+MAX_TOKENS = 15
 
 router = APIRouter()
 
@@ -15,8 +16,15 @@ async def add_tokens(numero_alumno: str = Body(embed=True), tokens: str = Body(e
     valid_ids = get_auth_ids('ids.json')
     if numero_alumno not in valid_ids:
         raise HTTPException(status_code=404, detail="El numero de alumno solicitado no existe")
-    if numero_alumno != '17640040':
+    if numero_alumno not in ['17640040+9grBXJmYUZ']:
         raise HTTPException(status_code=404, detail="Este numero de alumno no tiene los permisos necesarios")
-    valid_ids[numero_alumno] += int(tokens)
+
+    actual_tokens = int(valid_ids[numero_alumno])
+    new_tokens = int(tokens)
+    valid_ids[numero_alumno] = min(actual_tokens+new_tokens, MAX_TOKENS)
     update_ids(valid_ids)
-    return {"numero_alumno" : numero_alumno, "tokens" : tokens}
+    output_msg = {"numero_alumno" : numero_alumno.split("+")[0], "tokens" : valid_ids[numero_alumno]}
+    if actual_tokens + new_tokens > MAX_TOKENS:
+        warning_msg = {"warning": f"Remember that the maximum amount of tokens is {MAX_TOKENS}. If you want more tokens, email lfvansintjan@uc.cl"}
+        output_msg.update(warning_msg)
+    return output_msg

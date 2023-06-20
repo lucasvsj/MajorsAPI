@@ -17,13 +17,12 @@ async def read_major(major_name: str):
 
 
 @router.put("/major/{major_name}", tags=["major"], status_code=status.HTTP_200_OK)
-async def update_major(major_name: str, major_payload: dict = Body()):
+async def update_major(major_name: str, major_payload: dict = Body(), authenticated: bool = Depends(authenticate)):
     if check_major_structure(major_payload):
         json.dump(major_payload, open(f'{os.getcwd()}/data/majors/{major_name}.json', mode='w'), indent=2)
     else:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, 'La estructura no es la correcta')
-    return {}
-
+    return {"message": f"Major '{major_name}' updated successfully"}
 
 @router.post("/major/{major_name}/validate", tags=["major"])
 async def validate_major(major_name: str, cursos_aprobados: list = Body(embed=True)):

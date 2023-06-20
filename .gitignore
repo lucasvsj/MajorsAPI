@@ -32,5 +32,5 @@ build/
 
 requirements_*
 majors/
-*test*
+test.txt
 *_Flask*

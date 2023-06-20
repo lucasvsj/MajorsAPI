@@ -117,7 +117,9 @@ def checker_dfs(data, depth=0):
             elif 'relacion' not in data.keys():
                 return False
 
-        sub_data = data[key]
+        sub_data = data.get(key)
+        if sub_data is None:
+            return False
     
     # Next we check if the values structure is correct
     elif type(data) is str:
@@ -176,7 +178,9 @@ def major_builder(major, data, relation):
 def packages_builder(pack, data, relation):
     if type(data) is dict:
         key = 'subrequisitos'
-        sub_data = data[key]
+        sub_data = data.get(key)
+        if sub_data is None:
+            return {}
         relation = data['relacion']
         if type(sub_data) is list:
             major_checker = [type(elem) is dict for elem in sub_data]
